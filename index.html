@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Importer d3 et ficher js gérant les visualisations -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="visualisation.js" type="module"></script>
+    <!-- Importer la librairie Cal-Heatmap et ses dépendances -->
+    <script src="https://unpkg.com/cal-heatmap/dist/cal-heatmap.min.js"></script>
+    <script src="https://unpkg.com/cal-heatmap/dist/plugins/Legend.min.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/cal-heatmap/dist/plugins/Tooltip.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/cal-heatmap/dist/cal-heatmap.css">
+
+    <title>Comptes associatifs 2022-2023</title>
+</head>
+<body>
+    <div id="main">
+        <div id="info"></div>
+        <section id="section1">
+            <div class="text">
+                <h1>Les comptes de l'association « 2022-2023</h1>
+                <p>Durant son exercice 2022-203, l'association a comptabilisé <span class="accent">XX lignes</span> dans ses comptes, dont <span class="sorties">XX sorties</span> et <span class="entrees">XX entrées.</span></p>
+                <p>L'exercice a débuté avec <span class="accent">XXX CHF</span> sur le compte et s'est clôturé avec <span class="accent">XXX CHF</span>. Nous comptabilisons <span class="sorties">XX CHF</span> de dépenses et <span class="entrees">XX CHF</span> pour un résultat de <span class="entrees">+ XX CHF</span>.</p>
+                <p>Mais alors, comment cet argent a-t-il été utilisé? C'est ce que cette visualisation propose de rendre plus clair. Chacun des ronds ci-contre correspond à une ligne des comptes. Ceux-ci vont être réarrangés au fur et à mesure dans différentes sections pour présenter les comptes de manière dynamique et de manière plus lisible qu'un long fichier excel. Il est possible de passer sa souris sur un cercle en particulier pour obtenir plus d'informations à son sujet.</p>
+                <p class="notice">Version d'archive sans données sensibles</p>
+                <h2>C'est parti ↓</h1>
+            </div>
+
+            <div class="vis" id="visualisation1">
+                <svg id="svg1"></svg>
+            </div>
+        </section>
+
+        <section id="section2">
+            <div class="text">
+                <h1>Dépenses</h1>
+                <p>Cette section permet de visualiser comment les dépenses de l'année sont réparties parmi les quatre grandes catégories.</p>
+                <p>Chaque cercle correspond à une dépense, la taille du rond étant calculée par rapport au montant de la dépense.</p>
+                <p>Il y a aussi l'option d'afficher uniquement les dépenses d'une catégorie pour y voir plus clair.</p>
+                <button id="buttonVisu2">Afficher toutes les dépenses</button>
+                <select name="choisirCategorie" id="visu2_1">
+                    <option value="none">— Choisir une catégorie —</option>
+                    <option value="horsSaison">Hors-Saison</option>
+                    <option value="saison7">Saison 7</option>
+                    <option value="vieAsso">Vie associative</option>
+                    <option value="gestionAsso">Gestion associative</option>
+                  </select>
+                <svg id="legendeDepenses" height="200px" width="700px"></svg>
+            </div>  
+
+            <div class="vis" id="visualisation2">
+                <svg id="svg2">
+                </svg>
+            </div>
+
+        </section>
+
+        <section id="section3">
+            <div class="text">
+                <h1>Entrées</h1>
+                <p>Cette section est en tout point similaire à la précédente, sauf qu'elle se concentre sur les entrées.</p>
+                <p>À nouveau, il y a l'option d'afficher toutes les entrées ou d'afficher qu'une seule catégorie.</p>
+                <p><em>Il n'y a pas d'entrée dans la catégorie "vie associative"</em></p>
+                <button id="buttonVisu3">Afficher toutes les entrées</button>
+                <select name="choisirCategorie" id="visu3_1">
+                    <option value="none">— Choisir une catégorie —</option>
+                    <option value="horsSaison">Hors-Saison</option>
+                    <option value="saison7">Saison 7</option>
+                    <option value="gestionAsso">Gestion associative</option>
+                  </select>
+                <svg id="legendeEntrees" height="200px" width="700px"></svg>
+            </div>  
+
+            <div class="vis" id="visualisation3">
+                <svg id="svg3"></svg>
+            </div>
+
+        </section>
+        <section id="section4">
+            <div class="text">
+                <h1>Au fil de l'année</h1>
+                <p>L'exercice comptable s'est écoulé du 1er octobre 2022 au 30 septembre 2022.</p>
+                <p>Mais, non sans surprise, l'argent n'entre ni ne sort de manière linéraire au fil de l'année. Cette section propose donc de mettre en lumière comment l'argent fluctue chaque jour.</p>
+                <p>Chaque carré correspond à un jour (attention, les jours se lisent verticalement). Plus un carré est rouge, plus il y'a d'argent dépensé ce jour (autrement dit, le jour présente un résultat négatif des dépenses soustraites aux entrées). À l'inverse, plus un cercle est vert, plus il y a eu d'entrées d'argent ce jour-là.</p>
+                <button id="buttonVisu4">Afficher</button>
+            </div>  
+
+            <div class="vis" id="visualisation4">
+                <div class="rows">
+                    <div class="row" id="row1"></div>
+                    <div class="row" id="row2"></div>
+                    <div class="row" id="row3"></div>
+                </div>
+            </div>
+
+        </section>
+        <section id="section5">
+            <div class="text">
+                <h1>Qui a dépensé le plus?</h1>
+                <p>L'association est souvent amenée à rembourser ses membres qui ont avancé leurs propres fonds lors d'achats ou de commandes. Cette dernière visualisation propose donc de voir quel·le membre a avancé le plus de fonds durant l'année.</p>
+                <p>Afin de rendre le graphique lisible, les dépenses payées par facture et par carte directement depuis le compte de l'association sont ignorées, comme elles restent les dépenses les plus conséquentes. Par ailleurs, les personnes dont la somme des dépenses étaient inférieures à 20.- ont aussi été écartées afin de garantir la lisibilité</p>
+                <button id="buttonVisu5">Afficher</button>
+            </div>  
+
+            <div class="vis" id="visualisation5">
+                <svg id="svg5"></svg>
+            </div>
+
+        </section>
+        <div class="footer">Codé par Lexi Fretz dans le cadre du cours <i>Visualisation de données</i> donné par Isaac Pante (Section SLI, Faculté des Lettres, UNIL). Version sans données sensibles à des fins d'archivage | <a href="https://github.com/livelaughlexi/comptesAsso">GitHub Repo</a></div>
+    </div>
+</body>
+</html>

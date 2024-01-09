@@ -1,0 +1,145 @@
+/*** TYPOGRAPHIES ***/
+@font-face {
+    font-family: 'HK Grotesk';
+    src: url(assets/fonts/HKGrotesk-Regular.woff2), format(woff2);
+    font-weight: 400;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'HK Grotesk';
+    src: url(assets/fonts/HKGrotesk-Bold.woff2), format(woff2);
+    font-weight: 700;
+    font-style: normal;
+}
+
+
+/*** STYLES ***/
+
+/* Variables de couleur */
+:root {
+    --background : #EBFAFE;
+    --darkerBackground: #8BE1F9;
+    --actionBlue: #B1D6ED;
+    --accentBlue : #2AC8F4;
+    --dashColor: #065C74;
+    --accentEntrees: #34a867;
+    --accentSorties: #cc4c4d;
+    --horsSaison: #feca03;
+    --saison7: #2ac8f4;
+    --vieAsso: #f23b27;
+    --gestionAsso: #f231db;
+
+
+}
+
+/* Paramètres généraux & layout */
+body {
+    font-family: 'HK Grotesk', sans-serif;
+    background: var(--background);
+    color: #000;
+    overflow-x: hidden;
+}
+
+
+section {
+    max-height: 100vh;
+    min-height: 100vh;
+    margin: 20px;
+    scroll-snap-align: start;
+    border-bottom: 1px dotted var(--dashColor);
+    display: flex;
+}
+.footer {
+    margin: 20px;
+}
+
+.text {
+    width: 40%;
+    display: inline-block;
+}
+
+.vis {
+    display: inline-block;
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.vis svg:not(.ch-container) {
+    width: 90%;
+    height: 90vh;
+}
+
+
+.row {
+    display: block;
+    margin-bottom: 20px;
+}
+
+/* Infobox */
+
+#infobox {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin: 30px;
+    background: var(--darkerBackground);
+    padding: 5px 15px; 
+    opacity: 0;
+}
+
+/* Apparence du texte et des images */
+
+h1 {
+    font-size: 25px;
+}
+
+p {
+    font-size: 14px;
+}
+
+.notice {
+    border-left: 3px solid var(--accentBlue);
+    background: var(--actionBlue);
+    padding: 10px 15px;
+    border-radius: 0px 5px 5px 0px;
+}
+
+img {
+    height: 100px;
+}
+
+span {
+    font-weight: 700;
+}
+
+.entrees {
+    color: var(--accentEntrees)
+}
+
+.sorties {
+    color: var(--accentSorties)
+}
+
+/* Style des boutons */
+
+button {
+    border: 1px dashed var(--accentBlue);
+    padding: 5px 10px; 
+    border-radius: 5px;
+    background: var(--accentBlue);
+    transition: 0.3s ease-in-out;
+    margin-bottom: 15px; 
+}
+
+button:hover {
+    background: var(--darkerBackground);
+    transform: scale(1.05);
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
